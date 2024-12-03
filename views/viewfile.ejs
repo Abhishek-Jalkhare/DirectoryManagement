@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View File</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <nav class="bg-indigo-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-white text-xl font-bold">FileVault Pro</span>
+            <a href="/" class="text-white text-lg hover:text-indigo-200 transition-all duration-300 hover:scale-105">Home</a>
+        </div>
+    </nav>  
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
+        <h1 class="text-3xl font-bold mb-6 text-center text-gray-800"><%= file.title %></h1>
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-2 text-gray-700">Content:</h2>
+            <div class="bg-gray-50 p-4 rounded-md">
+                <pre class="whitespace-pre-wrap"><%= file.content %></pre>
+            </div>
+        </div>
+        <div class="flex justify-center space-x-4">
+            <form action="/upload/<%= file.folder %>/<%= file.title %>/edit">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 shadow-md">
+                    Edit File
+                </button>
+            </form>
+            <form action="/upload/<%= file.folder %>" method="GET">
+                <button type="submit" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 shadow-md">
+                    Back
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

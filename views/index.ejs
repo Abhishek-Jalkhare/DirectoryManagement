@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <nav class="bg-indigo-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-white text-xl font-bold">FileVault Pro</span>
+            <a href="/" class="text-white text-lg hover:text-indigo-200 transition-all duration-300 hover:scale-105">Home</a>
+        </div>
+    </nav>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-center text-3xl font-bold mb-8 text-gray-800">Directory Management</h1>
+        
+        <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div class="space-y-4">
+                <% files.forEach((ele) => { %>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-150">
+                        <span class="text-lg text-gray-700 font-medium"><%= ele.name %></span>
+                        <div class="space-x-2">
+                            <form action="/viewfolder/<%= ele.name %>" method="GET" class="inline">
+                                <input type="hidden" name="name" value="<%= ele.name %>">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-150">View</button>
+                            </form>
+                            <form action="/deletefolder/<%= ele.name %>" method="get" class="inline">
+                                <input type="hidden" name="name" value="<%= ele.name %>">
+                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition duration-150">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+            <div class="mt-8">
+                <form action="/createfolder" method="POST" class="flex justify-center space-x-4">
+                    <input type="text" name="name" placeholder="New folder name" required 
+                           class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <button type="submit" 
+                            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md font-medium transition duration-150 shadow-sm">
+                        Create Folder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
